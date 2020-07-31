@@ -2,7 +2,6 @@ import os
 from flask import Flask, flash, request, redirect, url_for, jsonify
 from werkzeug.utils import secure_filename
 import cv2
-import keras
 import numpy as np
 from keras.models import load_model
 from keras import backend as K
