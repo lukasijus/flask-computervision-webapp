@@ -78,7 +78,7 @@ sqlparse==0.3.1
 tb-nightly==2.3.0a20200707
 tensorboard==2.2.2
 tensorboard-plugin-wit==1.7.0
-tensorflow-cpu @ https://storage.googleapis.com/tensorflow/windows/cpu/tensorflow_cpu-2.3.0-cp36-cp36m-win_amd64.whl
+tensorflow-cpu @ 	https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow_cpu-2.3.0-cp36-cp36m-manylinux2010_x86_64.whl
 tensorflow-datasets==3.1.0
 tensorflow-estimator==2.2.0
 tensorflow-hub==0.8.0
