@@ -5,6 +5,9 @@ import cv2
 import numpy as np
 from keras.models import load_model
 from keras import backend as K
+from decouple import config
+
+HOST = config('PORT')
 
 UPLOAD_FOLDER = './uploads/'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -85,4 +88,4 @@ def getDominantColor(image):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(HOST)
