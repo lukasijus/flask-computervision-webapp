@@ -53,7 +53,7 @@ nano .env    # open the .env file in the nano text editor
 ```
 Add PORT value
 ```
-value=host='0.0.0.0'
+PORT='0.0.0.0'
 ```
 
 
