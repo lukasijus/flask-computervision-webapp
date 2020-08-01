@@ -43,7 +43,7 @@ def upload_file():
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			image = cv2.imread(os.path.dirname(os.path.realpath(__file__))+"/uploads/"+filename)
+			image = cv2.imread(os.path.dirname(os.path.realpath(__file__))+"/Uploads/"+filename)
 			color_result = getDominantColor(image)
 			dogOrCat = catOrDog(image)
 			return jsonify({"MainColor": color_result, "catOrDog": dogOrCat} )
