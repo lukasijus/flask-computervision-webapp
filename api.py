@@ -7,7 +7,6 @@ import keras
 from keras.models import load_model
 from keras import backend as K
 
-
 UPLOAD_FOLDER = './uploads/'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 DEBUG = True
