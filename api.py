@@ -10,7 +10,7 @@ from decouple import config
 
 HOST=config('PORT')
 
-UPLOAD_FOLDER = './uploads/'
+UPLOAD_FOLDER = './Uploads/'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 DEBUG = True
 app = Flask(__name__)
