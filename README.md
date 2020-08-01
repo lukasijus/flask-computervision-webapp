@@ -30,6 +30,11 @@ Check tensorflow version
 python3 -c "import tensorflow as tf; print(tf.__version__)"
 ```
 
+Installing uwsgi and flask
+```
+pip3 install uwsgi flask
+```
+
 [Initial server setup with ubuntu](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04)
 
 ## Add domain and DNS A records in the DNS configuration panel
