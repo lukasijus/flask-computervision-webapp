@@ -9,7 +9,7 @@ from decouple import config
 
 HOST = config('PORT')
 
-UPLOAD_FOLDER = './uploads/'
+UPLOAD_FOLDER = './Uploads/'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 DEBUG = True
 app = Flask(__name__)
@@ -37,7 +37,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            image = cv2.imread(os.path.dirname(os.path.realpath(__file__)) + "/uploads/" + filename)
+            image = cv2.imread(os.path.dirname(os.path.realpath(__file__)) + "/Uploads/" + filename)
             color_result = getDominantColor(image)
             result = catOrDog(image)
             redirect(url_for('upload_file', filename=filename))
@@ -64,7 +64,7 @@ def upload_file():
 
 def catOrDog(image):
     '''Determines if the image contains a cat or dog'''
-    classifier = load_model('./models/cats_vs_dogs_V1.h5')
+    classifier = load_model('./Models/cats_vs_dogs_V1.h5')
     image = cv2.resize(image, (150, 150), interpolation=cv2.INTER_AREA)
     image = image.reshape(1, 150, 150, 3)
     res = str(classifier.predict_classes(image, 1, verbose=0)[0][0])
