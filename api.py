@@ -6,6 +6,9 @@ import numpy as np
 import keras
 from keras.models import load_model
 from keras import backend as K
+from decouple import config
+
+HOST=config('PORT')
 
 UPLOAD_FOLDER = './uploads/'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -43,9 +46,6 @@ def upload_file():
 			image = cv2.imread(os.path.dirname(os.path.realpath(__file__))+"/uploads/"+filename)
 			color_result = getDominantColor(image)
 			dogOrCat = catOrDog(image)
-			# '''<!doctype html>
-			# 	<title>API</title>
-			# 	<h1>HEllO</h1>'''
 			return jsonify({"MainColor": color_result, "catOrDog": dogOrCat} )
 	return return_string
 
@@ -74,4 +74,4 @@ def getDominantColor(image):
 
 
 if __name__ == "__main__":
-	app.run()
+	app.run(HOST)
