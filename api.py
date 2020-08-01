@@ -51,7 +51,7 @@ def upload_file():
 
 def catOrDog(image):
 	'''Determines if the image contains a cat or dog'''
-	classifier = load_model('./models/cats_vs_dogs_V1.h5')
+	classifier = load_model('./Models/cats_vs_dogs_V1.h5')
 	image = cv2.resize(image, (150,150), interpolation = cv2.INTER_AREA)
 	image = image.reshape(1,150,150,3) 
 	res = str(classifier.predict_classes(image, 1, verbose = 0)[0][0])
