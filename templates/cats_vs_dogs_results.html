@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title%}  {{ title }} {% endblock %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+<h1>Image contains a  {{ result }} </h1>
+<h2>Dominant color is {{ color_result }}</h2>
+<form method=post enctype=multipart/form-data>
+  <input type=file name=file>
+  <input type=submit value=Upload>
+</form>
+<img src={{ filename }} alt = {{ result }} class="img-thumbnail">
+
+{% endblock %}
