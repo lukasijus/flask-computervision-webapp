@@ -1,5 +1,5 @@
 import os
-from flask import Flask, flash, request, redirect, url_for, jsonify, render_template
+from flask import Flask, flash, request, redirect, url_for, jsonify, render_template, after_this_request
 from werkzeug.utils import secure_filename
 import cv2
 from decouple import config
@@ -59,10 +59,5 @@ def upload_file():
             result = catOrDog(image)
             redirect(url_for('upload_file', filename=filename))
             res = render_template(cats_vs_dogs_results_page, filename = os.path.join(app.config['STATIC_FOLDER'], filename),  title_papge = 'Cats vs Dogs Results', result = result, color_result = color_result)
-            @after_this_request
-	    def del_file(response):
-                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                os.remove(os.path.join('./static', filename))
-		return response
-	    return res
+            return res
     return render_template(cats_vs_dogs_page, title = 'Upload a new file')
