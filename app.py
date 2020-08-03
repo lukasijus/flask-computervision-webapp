@@ -53,7 +53,6 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            copyfile(os.path.join(app.config['UPLOAD_FOLDER'], filename), os.path.join(app.config['STATIC_FOLDER'], filename))
             image = cv2.imread(os.path.dirname(os.path.realpath(__file__)) + "/Uploads/" + filename)
             color_result = getDominantColor(image)
             result = catOrDog(image)
