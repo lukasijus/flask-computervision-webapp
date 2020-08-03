@@ -52,6 +52,11 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+            try:
+                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                os.remove(os.path.join(app.config['STATIC_FOLDER'], filename))
+            except ValueError:
+                pass
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             copyfile(os.path.join(app.config['UPLOAD_FOLDER'], filename), os.path.join(app.config['STATIC_FOLDER'], filename))
             image = cv2.imread(os.path.dirname(os.path.realpath(__file__)) + "/Uploads/" + filename)
@@ -59,7 +64,5 @@ def upload_file():
             result = catOrDog(image)
             redirect(url_for('upload_file', filename=filename))
             res = render_template(cats_vs_dogs_results_page, filename = os.path.join(app.config['STATIC_FOLDER'], filename),  title_papge = 'Cats vs Dogs Results', result = result, color_result = color_result)
-            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            os.remove(os.path.join(app.config['STATIC_FOLDER'], filename))
             return res
     return render_template(cats_vs_dogs_page, title = 'Upload a new file')
