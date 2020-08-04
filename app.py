@@ -18,11 +18,13 @@ HOST = config('PORT')
 
 UPLOAD_FOLDER = './Uploads/'
 STATIC_FOLDER = './static/'
+STATIC_FOLDER_UPLOADS = './static/uploads'
 DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['STATIC_FOLDER'] = STATIC_FOLDER
+app.config['STATIC_FOLDER_UPLOADS'] = STATIC_FOLDER_UPLOADS
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 
@@ -53,10 +55,12 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            copyfile(os.path.join(app.config['UPLOAD_FOLDER'], filename),  os.path.join(app.config['STATIC_FOLDER_UPLOADS'], filename))
             image = cv2.imread(os.path.dirname(os.path.realpath(__file__)) + "/Uploads/" + filename)
+            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             color_result = getDominantColor(image)
             result = catOrDog(image)
             redirect(url_for('upload_file', filename=filename))
-            res = render_template(cats_vs_dogs_results_page, filename = os.path.join(app.config['STATIC_FOLDER'], filename),  title_papge = 'Cats vs Dogs Results', result = result, color_result = color_result)
+            res = render_template(cats_vs_dogs_results_page, filename = os.path.join(app.config['STATIC_FOLDER_UPLOADS'], filename),  title_papge = 'Cats vs Dogs Results', result = result, color_result = color_result)
             return res
     return render_template(cats_vs_dogs_page, title = 'Upload a new file')
