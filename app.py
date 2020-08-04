@@ -18,7 +18,7 @@ HOST = config('PORT')
 
 UPLOAD_FOLDER = './Uploads/'
 STATIC_FOLDER = './static/'
-STATIC_FOLDER_UPLOADS = './static/uploads'
+STATIC_FOLDER_UPLOADS = './static/uploads/'
 DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
