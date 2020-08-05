@@ -6,9 +6,6 @@ from decouple import config
 from functions.main import getDominantColor, catOrDog, allowed_file
 from jinja2 import Environment, PackageLoader, select_autoescape
 from shutil import copyfile
-from form_contact import ContactForm
-from send_grid_flask import  send_mail
-from flask_mail import Mail, Message
 
 env = Environment(
     loader=PackageLoader('app', 'templates'),
