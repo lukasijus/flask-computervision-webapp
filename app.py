@@ -21,7 +21,7 @@ HOST = config('PORT')
 
 UPLOAD_FOLDER = './Uploads/'
 STATIC_FOLDER = './static/'
-STATIC_FOLDER_UPLOADS = './static/uploads'
+STATIC_FOLDER_UPLOADS = './static/uploads/'
 DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -63,7 +63,6 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             copyfile(os.path.join(app.config['UPLOAD_FOLDER'], filename),  os.path.join(app.config['STATIC_FOLDER_UPLOADS'], filename))
             image = cv2.imread(os.path.dirname(os.path.realpath(__file__)) + "/Uploads/" + filename)
-            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             color_result = getDominantColor(image)
             result = catOrDog(image)
             redirect(url_for('upload_file', filename=filename))
