@@ -6,6 +6,9 @@ from decouple import config
 from functions.main import getDominantColor, catOrDog, allowed_file
 from jinja2 import Environment, PackageLoader, select_autoescape
 from shutil import copyfile
+from form_contact import ContactForm
+from send_grid_flask import  send_mail
+from flask_mail import Mail, Message
 
 env = Environment(
     loader=PackageLoader('app', 'templates'),
@@ -27,17 +30,20 @@ app.config['STATIC_FOLDER'] = STATIC_FOLDER
 app.config['STATIC_FOLDER_UPLOADS'] = STATIC_FOLDER_UPLOADS
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-
 title_papge = env.get_template('title.html')
 about_page = env.get_template('about.html')
 
 @app.route('/')
 def hello():
-    return render_template(title_papge, title='Index page2')
+    return render_template(title_papge, title='lukas code')
 
 @app.route('/about')
 def about():
-    return render_template(about_page, title='About page2')
+    return render_template(about_page, title='About the project')
+
+@app.route('/success')
+def success():
+    return render_template(title_papge)
 
 @app.route('/cats_vs_dogs', methods=['GET', 'POST'])
 def upload_file():
